@@ -1,5 +1,8 @@
 const mongoose = require('mongoose');
 const express = require('express');
+const path = require('path');
+const bodyParser = require('body-parser');
+const expressValidator = require('express-validator');
 
 const constants = require('./constants');
 
@@ -10,7 +13,7 @@ mongoose.connect(`mongodb://${constants.DB_USER}:${constants.DB_PASSWORD}@ds2230
 const db = mongoose.connection;
 
 //Models
-let Blob = require('./models/blob');
+const Training = require('./models/blob');
 
 // Check db connection
 db.once('open', function(){
@@ -23,9 +26,9 @@ app.get('/', (req, res) => {
   res.send('TATTI');
 });
 
-// blob route - gets all data from blob collection
-app.get('/api/blob', function(req, res,next){
-  Blob.find({}, function(err, data){
+// blob route - gets all data from training collection
+app.get('/api/training/blob', function(req, res,next){
+  Training.find({}, function(err, data){
     if(err){
       console.log(err);
     }else{
@@ -34,8 +37,9 @@ app.get('/api/blob', function(req, res,next){
   });
 });
 
-app.get('/api/reg=:reg', function(req, res,next){
-  Blob.findOne({ "Registration No": req.params.reg }, function(err, data){
+// gets complete student details corresponding to the reg no in the request
+app.get('/api/training/reg=:reg', function(req, res,next){
+  Training.findOne({ "Registration No": req.params.reg }, function(err, data){
     if(err){
       console.log(err);
     }else{
@@ -43,6 +47,8 @@ app.get('/api/reg=:reg', function(req, res,next){
     }
   });
 });
+
+
 
 app.listen(9000);
 console.log('Running on port 9000');
