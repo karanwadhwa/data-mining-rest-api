@@ -125,7 +125,7 @@ const blobSchema = mongoose.Schema({
 });
 
 // export model
-const Blob = module.exports = mongoose.model('Blob', blobSchema, 'blob');
+const Blob = module.exports = mongoose.model('Blob', blobSchema, 'training');
 
 /* // queries to 'blob' collection
 module.exports.getAllData = (callback, limit) => {

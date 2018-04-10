@@ -3,3 +3,5 @@ module.exports = {
   DB_USER: 'root',
   DB_PASSWORD: 'rootpassword'
 }
+
+// Coz fuck security.

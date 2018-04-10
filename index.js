@@ -6,9 +6,8 @@ const constants = require('./constants');
 const app = express();
 
 // db connection
-mongoose.connect(`mongodb://${constants.DB_USER}:${constants.DB_PASSWORD}@ds119059.mlab.com:19059/${constants.DB_NAME}`);
+mongoose.connect(`mongodb://${constants.DB_USER}:${constants.DB_PASSWORD}@ds223019.mlab.com:23019/${constants.DB_NAME}`);
 const db = mongoose.connection;
-var url = `mongodb://root:rootpassword@ds119059.mlab.com:19059/training`;
 
 //Models
 let Blob = require('./models/blob');
