@@ -14,6 +14,7 @@ const db = mongoose.connection;
 
 //Models
 const Training = require('./models/blob');
+const Testing = require('./models/testing');
 
 // Check db connection
 db.once('open', function(){
