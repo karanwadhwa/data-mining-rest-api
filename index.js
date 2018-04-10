@@ -38,7 +38,8 @@ app.get('/api/training/blob', function(req, res,next){
   });
 });
 
-// gets complete student details corresponding to the reg no in the request
+// gets complete student details (from training collection)
+// corresponding to the reg no in the request
 app.get('/api/training/reg=:reg', function(req, res,next){
   Training.findOne({ "Registration No": req.params.reg }, function(err, data){
     if(err){
@@ -49,7 +50,28 @@ app.get('/api/training/reg=:reg', function(req, res,next){
   });
 });
 
+// blob route - gets all data from testing collection
+app.get('/api/testing/blob', function(req, res,next){
+  Testing.find({}, function(err, data){
+    if(err){
+      console.log(err);
+    }else{
+      res.json(data);
+    }
+  });
+});
 
+// gets complete student details (from testing collection)
+// corresponding to the reg no in the request
+app.get('/api/testing/reg=:reg', function(req, res,next){
+  Testing.findOne({ "reg": req.params.reg }, function(err, data){
+    if(err){
+      console.log(err);
+    }else{
+      res.json(data);
+    }
+  });
+});
 
 app.listen(9000);
 console.log('Running on port 9000');
