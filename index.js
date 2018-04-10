@@ -21,6 +21,27 @@ db.once('open', function(){
   console.log('Connected to MongoDB');
 });
 
+//Body Parser Middleware
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
+
+// Express Validator Middleware
+app.use(expressValidator({
+  errorFormatter: function(param, msg, value) {
+      var namespace = param.split('.')
+      , root    = namespace.shift()
+      , formParam = root;
+
+    while(namespace.length) {
+      formParam += '[' + namespace.shift() + ']';
+    }
+    return {
+      param : formParam,
+      msg   : msg,
+      value : value
+    };
+  }
+}));
 
 // express routes
 app.get('/', (req, res) => {
@@ -71,6 +92,79 @@ app.get('/api/testing/reg=:reg', function(req, res,next){
       res.json(data);
     }
   });
+});
+
+app.post('/api/testing', (req, res, next) => {
+  req.checkBody('name','Enter your name bruh!').notEmpty();
+  req.checkBody('email','Enter a valid email id').notEmpty().isEmail();
+  req.checkBody('reg','Enter your registration number').notEmpty().isInt();
+  req.checkBody('age','Enter your age').notEmpty().isInt();
+  req.checkBody('gender','Select your gender').notEmpty();
+  req.checkBody('tenBoard','Select your Secondary School Board').notEmpty();
+  req.checkBody('ten','Enter your 10th grade marks').notEmpty().isInt();
+  req.checkBody('twelve','Enter your 12th grade marks').notEmpty().isInt();
+  req.checkBody('twPhy','Enter the marks you scored in 12th Boards Physics').notEmpty().isInt();
+  req.checkBody('twChem','Enter the marks you scored in 12th Boards Chemistry').notEmpty().isInt();
+  req.checkBody('twMath','Enter the marks you scored in 12th Boards Maths').notEmpty().isInt();
+  req.checkBody('TTPhy1','Enter the TERM TEST grade you scored in Applied Physics 1').notEmpty();
+  req.checkBody('TTChem1','Enter the TERM TEST  grade you scored in Applied Chemistry 1').notEmpty();
+  req.checkBody('TTMath1','Enter the TERM TEST grade you scored in Applied Mathematics 1').notEmpty();
+  req.checkBody('Phy1','Enter the FINAL grade you scored in Applied Physics 1').notEmpty();
+  req.checkBody('Chem1','Enter the FINAL grade you scored in Applied Chemistry 1').notEmpty();
+  req.checkBody('Math1','Enter the FINAL grade you scored in Applied Mathematics 1').notEmpty();
+  req.checkBody('SEM1','Enter your Semester 1 Pointer').notEmpty().isInt();
+  req.checkBody('TTPhy2','Enter the TERM TEST grade you scored in Applied Physics 2').notEmpty();
+  req.checkBody('TTChem2','Enter the TERM TEST  grade you scored in Applied Chemistry 2').notEmpty();
+  req.checkBody('TTMath2','Enter the TERM TEST  grade you scored in Applied Mathematics 2').notEmpty();
+  req.checkBody('coaching','Did you attend any external coaching classes?').notEmpty();
+  req.checkBody('travel','Enter your travel time to college').notEmpty();
+  req.checkBody('attendance','Enter your attendance range').notEmpty();
+  req.checkBody('health','How would you rate your general health?').notEmpty();
+
+  //Get Errors
+  let errors = req.validationErrors();
+
+    if(errors){
+      res.status(400).send(errors);
+    }else{
+      let testing = new Testing();
+      testing.name = req.body.name;
+      testing.email = req.body.email;
+      testing.reg = req.body.reg;
+      testing.age = req.body.age;
+      testing.gender = req.body.gender;
+      testing.tenBoard = req.body.tenBoard;
+      testing.ten = req.body.ten;
+      testing.twelve = req.body.twelve;
+      testing.twPhy = req.body.twPhy;
+      testing.twChem = req.body.twChem;
+      testing.twMath = req.body.twMath;
+      testing.TTPhy1 = req.body.TTPhy1;
+      testing.TTChem1 = req.body.TTChem1;
+      testing.TTMath1 = req.body.TTMath1;
+      testing.Phy1 = req.body.Phy1;
+      testing.Chem1 = req.body.Chem1;
+      testing.Math1 = req.body.Math1;
+      testing.SEM1 = req.body.SEM1;
+      testing.TTPhy2 = req.body.TTPhy2;
+      testing.TTChem2 = req.body.TTChem2;
+      testing.TTMath2 = req.body.TTMath2;
+      testing.coaching = req.body.coaching;
+      testing.travel = req.body.travel;
+      testing.attendance = req.body.attendance;
+      testing.health = req.body.health;
+
+      console.log(testing);
+
+      testing.save(function(err){
+        if(err){
+          res.send(err);
+        }else{
+          res.status(201).send('Details saved successfully');
+        }
+      });
+    }
+
 });
 
 app.listen(9000);
