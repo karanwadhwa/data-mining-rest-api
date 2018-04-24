@@ -15,6 +15,7 @@ const db = mongoose.connection;
 //Models
 const Training = require('./models/blob');
 const Testing = require('./models/testing');
+const Student = require('./models/student');
 
 // Check db connection
 db.once('open', function () {
@@ -56,6 +57,26 @@ app.post('/api/user/login', function (req, res, next) {
       res.json(data);
     }
   });
+});
+
+app.post('/api/student/registration', function (req, res, next) {
+  req.checkBody('email', 'Enter a valid email id').notEmpty().isEmail();
+  req.checkBody('reg', 'Enter your registration number').notEmpty().isInt();
+
+  // Get Errors
+  let errors = req.validationErrors();
+
+  if (errors) res.status(400).send(errors);
+  else {
+    let newStudent = new Student({
+      email: req.body.email,
+      reg: req.body.reg
+    });
+
+    newStudent.save()
+      .then(student => res.status(201).json(student))
+      .catch(err => console.log(err));
+  }
 });
 
 // blob route - gets all data from training collection
@@ -174,7 +195,7 @@ app.post('/api/testing', (req, res, next) => {
       if (err) {
         res.send(err);
       } else {
-        res.status(201).send('Details saved successfully');
+        res.status(200).send('Details saved successfully');
       }
     });
   }
