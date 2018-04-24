@@ -85,6 +85,18 @@ const testingSchema = mongoose.Schema({
     type: String,
     required: true
   },
+  "Phy2": {
+    type: String,
+    required: true
+  },
+  "Chem2": {
+    type: String,
+    required: true
+  },
+  "Math2": {
+    type: String,
+    required: true
+  },
   "coaching": {
     type: String,
     required: true
