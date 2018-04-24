@@ -48,6 +48,16 @@ app.get('/', (req, res) => {
   res.send('TATTI');
 });
 
+app.post('/api/user/login',function(req,res,next){
+    Testing.findOne(req.body,function(err,data){
+      if(err){
+        console.log(err);
+      }else{
+        res.json(data);  
+      }
+    });
+});
+
 // blob route - gets all data from training collection
 app.get('/api/training/blob', function(req, res,next){
   Training.find({}, function(err, data){
