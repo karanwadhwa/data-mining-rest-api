@@ -154,8 +154,6 @@ app.post('/api/testing', (req, res, next) => {
       testing.attendance = req.body.attendance;
       testing.health = req.body.health;
 
-      console.log(testing);
-
       testing.save(function(err){
         if(err){
           res.send(err);
