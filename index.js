@@ -116,7 +116,7 @@ app.get('/api/testing/blob', function (req, res, next) {
 // gets complete student details (from testing collection)
 // corresponding to the reg no in the request
 app.get('/api/testing/reg=:reg', function (req, res, next) {
-  Testing.findOne({ "reg": req.params.reg }, function (err, data) {
+  Testing.findOne({ "personal.reg": req.params.reg }, function (err, data) {
     if (err) {
       console.log(err);
     } else {
