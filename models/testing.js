@@ -26,99 +26,100 @@ const testingSchema = mongoose.Schema({
   "academic": {
     "flag": {
       type: Boolean,
-      required: true
+      required: true,
+      default: false
     },
     "tenBoard": {
       type: String,
-      required: true
+      //required: true
     },
     "ten": {
       type: String,
-      required: true
+      //required: true
     },
     "twelve": {
       type: String,
-      required: true
+      //required: true
     },
     "twPhy": {
       type: String,
-      required: true
+      //required: true
     },
     "twChem": {
       type: String,
-      required: true
+      //required: true
     },
     "twMath": {
       type: String,
-      required: true
+      //required: true
     },
     "TTPhy1": {
       type: String,
-      required: true
+      //required: true
     },
     "TTChem1": {
       type: String,
-      required: true
+      //required: true
     },
     "TTMath1": {
       type: String,
-      required: true
+      //required: true
     },
     "Phy1": {
       type: String,
-      required: true
+      //required: true
     },
     "Chem1": {
       type: String,
-      required: true
+      //required: true
     },
     "Math1": {
       type: String,
-      required: true
+      //required: true
     },
     "SEM1": {
       type: String,
-      required: true
+      //required: true
     },
     "TTPhy2": {
       type: String,
-      required: true
+      //required: true
     },
     "TTChem2": {
       type: String,
-      required: true
+      //required: true
     },
     "TTMath2": {
       type: String,
-      required: true
+      //required: true
     },
     "Phy2": {
       type: String,
-      required: true
+      //required: true
     },
     "Chem2": {
       type: String,
-      required: true
+      //required: true
     },
     "Math2": {
       type: String,
-      required: true
+      //required: true
     },
     "coaching": {
       type: String,
-      required: true
+      //required: true
     },
     "travel": {
       type: String,
-      required: true
+      //required: true
     },
     "attendance": {
       type: String,
-      required: true
+      //required: true
     },
     "health": {
       type: String,
-      required: true
+      //required: true
     }
   }
 });
