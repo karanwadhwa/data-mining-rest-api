@@ -174,18 +174,18 @@ app.post('/api/testing/new', (req, res, next) => {
 app.post('/api/testing/update', (req, res, next) => {
   req.checkBody('email', 'email required').notEmpty().isEmail();
   req.checkBody('tenBoard', 'Select your Secondary School Board').notEmpty();
-  req.checkBody('ten', 'Enter your 10th grade marks').notEmpty().isInt();
-  req.checkBody('twelve', 'Enter your 12th grade marks').notEmpty().isInt();
-  req.checkBody('twPhy', 'Enter the marks you scored in 12th Boards Physics').notEmpty().isInt();
-  req.checkBody('twChem', 'Enter the marks you scored in 12th Boards Chemistry').notEmpty().isInt();
-  req.checkBody('twMath', 'Enter the marks you scored in 12th Boards Maths').notEmpty().isInt();
+  req.checkBody('ten', 'Enter your 10th grade marks').notEmpty();
+  req.checkBody('twelve', 'Enter your 12th grade marks').notEmpty();
+  req.checkBody('twPhy', 'Enter the marks you scored in 12th Boards Physics').notEmpty();
+  req.checkBody('twChem', 'Enter the marks you scored in 12th Boards Chemistry').notEmpty();
+  req.checkBody('twMath', 'Enter the marks you scored in 12th Boards Maths').notEmpty();
   req.checkBody('TTPhy1', 'Enter the TERM TEST grade you scored in Applied Physics 1').notEmpty();
   req.checkBody('TTChem1', 'Enter the TERM TEST  grade you scored in Applied Chemistry 1').notEmpty();
   req.checkBody('TTMath1', 'Enter the TERM TEST grade you scored in Applied Mathematics 1').notEmpty();
   req.checkBody('Phy1', 'Enter the FINAL grade you scored in Applied Physics 1').notEmpty();
   req.checkBody('Chem1', 'Enter the FINAL grade you scored in Applied Chemistry 1').notEmpty();
   req.checkBody('Math1', 'Enter the FINAL grade you scored in Applied Mathematics 1').notEmpty();
-  req.checkBody('SEM1', 'Enter your Semester 1 Pointer').notEmpty().isInt();
+  req.checkBody('SEM1', 'Enter your Semester 1 Pointer').notEmpty();
   req.checkBody('TTPhy2', 'Enter the TERM TEST grade you scored in Applied Physics 2').notEmpty();
   req.checkBody('TTChem2', 'Enter the TERM TEST  grade you scored in Applied Chemistry 2').notEmpty();
   req.checkBody('TTMath2', 'Enter the TERM TEST  grade you scored in Applied Mathematics 2').notEmpty();
